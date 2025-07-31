@@ -2,17 +2,15 @@ import player_stats
 import os
 
 os.system('clear')
-name = ""
 
-def main():
+def new_character():
     race = create_race()
     job = create_job()
     skills = create_skills()
     strength, dexterity, endurance, intelligence = create_attributes()
-
+    name = create_name()
     player = player_stats.Player(name, job, race, strength, dexterity, endurance, intelligence, skills)
-    player.describe()
-
+    return player
 
 def create_race():
     done = False
@@ -168,7 +166,7 @@ def create_attributes():
                     point_board()
                     print(f"{current_attribute} cannot be lower than 8")
                 done2 = True
-                print(f"how many points would you like to add to {current_attribute}")
+                print(f"how many points would you like to add to {current_attribute}?")
                 response = input(":")
                 int_response = int(response)
                 if int_response > points:
@@ -209,5 +207,8 @@ def create_attributes():
     os.system('clear')
     return strength, dexterity, endurance, intelligence
 
-
-main()
+def create_name():
+    print("what is your name? \n")
+    response = input(':')
+    os.system('clear')
+    return response
