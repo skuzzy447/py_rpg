@@ -3,15 +3,12 @@ import os
 
 os.system('clear')
 name = ""
-strength = 10
-dexterity = 10
-endurance = 10
-intelligence = 10
 
 def main():
     race = create_race()
     job = create_job()
     skills = create_skills()
+    strength, dexterity, endurance, intelligence = create_attributes()
 
     player = player_stats.Player(name, job, race, strength, dexterity, endurance, intelligence, skills)
     player.describe()
@@ -118,12 +115,13 @@ def create_skills():
         else:
             os.system('clear')
             print("incompatible response")
-            loop2()
+            done2 = False
         if to_add1 == to_add2:
             os.system('clear')
             print("cant be the same as first pick")
+            done2 = False
         else:
-            done = True
+            done2 = True
     os.system('clear')
 
     new_list = []
@@ -134,6 +132,82 @@ def create_skills():
         else:
             new_list.append([skill_string[0], False])
     return new_list
+
+def create_attributes():
+    strength = 8
+    dexterity = 8
+    endurance = 8
+    intelligence = 8
+    done = False
+    points = 12
+    #while not done:
+    def point_board():
+        print(f"you have {points} points to distribute \n")
+        print(f"strength = {strength}")
+        print(f"dexterity = {dexterity}")
+        print(f"endurance = {endurance}")
+        print(f"intelligence = {intelligence} \n")
+    current_attribute = "strength"
+    done = False
+    while not done:
+        for each in range(0,4):
+            os.system('clear')
+            point_board()
+            if each == 0:
+                current_attribute = "strength"
+            elif each == 1:
+                current_attribute = "dexterity"
+            elif each == 2:
+                current_attribute = "endurance"
+            elif each == 3:
+                current_attribute = "intelligence"
+            done2 = False
+            while not done2:
+                def too_low():
+                    os.system('clear')
+                    point_board()
+                    print(f"{current_attribute} cannot be lower than 8")
+                done2 = True
+                print(f"how many points would you like to add to {current_attribute}")
+                response = input(":")
+                int_response = int(response)
+                if int_response > points:
+                    os.system('clear')
+                    point_board()
+                    print("not enough points")
+                    done2 = False
+                elif current_attribute == "strength":
+                    if strength + int_response < 8:
+                        too_low()
+                        done2 = False
+                    else:
+                        strength += int_response
+                        points -= int_response
+                elif current_attribute == "dexterity":
+                    if dexterity + int_response < 8:
+                        too_low()
+                        done2 = False
+                    else:
+                        dexterity += int_response
+                        points -= int_response
+                elif current_attribute == "endurance":
+                    if endurance + int_response < 8:
+                        too_low()
+                        done2 = False
+                    else:
+                        endurance += int_response
+                        points -= int_response
+                elif current_attribute == "intelligence":
+                    if intelligence + int_response < 8:
+                        too_low()
+                        done2 = False
+                    else:
+                        intelligence += int_response
+                        points -= int_response
+        if points == 0:
+            done = True
+    os.system('clear')
+    return strength, dexterity, endurance, intelligence
 
 
 main()
