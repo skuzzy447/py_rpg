@@ -1,4 +1,4 @@
-import player_stats
+from player import *
 import os
 
 os.system('clear')
@@ -9,7 +9,7 @@ def new_character():
     skills = create_skills()
     strength, dexterity, endurance, intelligence = create_attributes()
     name = create_name()
-    player = player_stats.Player(name, job, race, strength, dexterity, endurance, intelligence, skills)
+    player = Player(name, job, race, strength, dexterity, endurance, intelligence, skills)
     return player
 
 def create_race():
