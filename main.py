@@ -11,8 +11,7 @@ def main():
     menu_selection = main_menu()
     if menu_selection == "new":
         player = new_character()
-        print(player.describe())
-        test(player)
+        level_1_start(player, 1)
 
 
 if __name__ == "__main__":
