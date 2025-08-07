@@ -3,6 +3,7 @@ class Player:
         self.name = name
         self.job = job
         self.race = race
+
         self.strength = strength
         self.dexterity = dexterity
         self.endurance = endurance
@@ -12,9 +13,12 @@ class Player:
         self.level = 1
         self.armor = 0
         self.prof_bonus = 1
+
         self.in_combat = False
 
         self.inventory = []
+        #0 = helmet, 1 = armor, 2 = boots, 3 = right hand, 4 = left hand
+        self.equipment = ["none", "none", "none", "none", "none"]
 
     def describe(player):
         print(player.name, player.job, player.race, player.strength, player.dexterity, player.endurance, player.intelligence, player.skills)

@@ -1,5 +1,6 @@
 from player import *
 import os
+from constants import *
 
 os.system('clear')
 
@@ -15,11 +16,11 @@ def new_character():
 def create_race():
     done = False
     while not done:
-        print("what race are you? \n")
-        print("1 = Human")
-        print("2 = Elf")
-        print("3 = Dwarf \n")
-        response = input(":")
+        print(f"{WHITE}what race are you? \n")
+        print(f"{RED}1: {BLUE}Human")
+        print(f"{RED}2: {BLUE}Elf")
+        print(f"{RED}3: {BLUE}Dwarf \n")
+        response = input(f"{WHITE}>:")
         done = True
         if response == "1":
             race = "human"
@@ -29,7 +30,7 @@ def create_race():
             race = "dwarf"
         else:
             os.system('clear')
-            print("Incompatible response \n")
+            print(f"{WHITE}Incompatible response \n")
             done = False
     os.system('clear')
     return race
@@ -38,11 +39,11 @@ def create_job():
     done = False
     while not done:
         done = True
-        print("what class are you? \n")
-        print("1 = warrior")
-        print("2 = rogue")
-        print("3 = warlock")
-        response = input(":")
+        print(f"{WHITE}what class are you? \n")
+        print(f"{RED}1: {BLUE}warrior")
+        print(f"{RED}2: {BLUE}rogue")
+        print(f"{RED}3: {BLUE}warlock\n")
+        response = input(f"{WHITE}>:")
         if response == "1":
             job = "warrior"
         elif response == "2":
@@ -51,7 +52,7 @@ def create_job():
             job = "warlock"
         else:
             os.system('clear')
-            print("incompatible response")
+            print(f"{WHITE}incompatible response")
             done = False   
     os.system('clear')
     return job
@@ -65,13 +66,13 @@ def create_skills():
 
 
     while not done1:
-        print("pick proficient skill 1/2 \n")
-        print("1 = arcana")
-        print("2 = athletics")
-        print("3 = investigation")
-        print("4 = medicine")
-        print("5 = stealth")
-        response = input(":")
+        print(f"{WHITE}pick proficient skill {GREEN}1/2 \n")
+        print(f"{RED}1: {BLUE}arcana")
+        print(f"{RED}2: {BLUE}athletics")
+        print(f"{RED}3: {BLUE}investigation")
+        print(f"{RED}4: {BLUE}medicine")
+        print(f"{RED}5: {BLUE}stealth\n")
+        response = input(f"{WHITE}>:")
         done1 = True
         if response == "1":
             to_add1 = "arcana"
@@ -85,20 +86,19 @@ def create_skills():
             to_add1 = "stealth"
         else:
             os.system('clear')
-            print("incompatible response")
+            print(f"{WHITE}incompatible response")
             done1 = False
     os.system('clear')
 
     while not done2:
         done2 = True
-        print("pick proficient skill 2/2 \n")
-        print("1 = arcana")
-        print("2 = athletics")
-        print("3 = investigation")
-        print("4 = medicine")
-        print("5 = stealth")
-
-        response = input(":")
+        print(f"{WHITE}pick proficient skill {GREEN}2/2 \n")
+        print(f"{RED}1: {BLUE}arcana")
+        print(f"{RED}2: {BLUE}athletics")
+        print(f"{RED}3: {BLUE}investigation")
+        print(f"{RED}4: {BLUE}medicine")
+        print(f"{RED}5: {BLUE}stealth\n")
+        response = input(f"{WHITE}>:")
         
         if response == "1":
             to_add2 = "arcana"
@@ -138,13 +138,12 @@ def create_attributes():
     intelligence = 8
     done = False
     points = 12
-    #while not done:
     def point_board():
-        print(f"you have {points} points to distribute \n")
-        print(f"strength = {strength}")
-        print(f"dexterity = {dexterity}")
-        print(f"endurance = {endurance}")
-        print(f"intelligence = {intelligence} \n")
+        print(f"{WHITE}you have {BLUE}{points} {WHITE}points to distribute \n")
+        print(f"{WHITE}strength = {BLUE}{strength}")
+        print(f"{WHITE}dexterity = {BLUE}{dexterity}")
+        print(f"{WHITE}endurance = {BLUE}{endurance}")
+        print(f"{WHITE}intelligence = {BLUE}{intelligence} \n")
     current_attribute = "strength"
     done = False
     while not done:
@@ -164,15 +163,15 @@ def create_attributes():
                 def too_low():
                     os.system('clear')
                     point_board()
-                    print(f"{current_attribute} cannot be lower than 8")
+                    print(f"{BLUE}{current_attribute} cannot be lower than 8")
                 done2 = True
-                print(f"how many points would you like to add to {current_attribute}?")
-                response = input(":")
+                print(f"{WHITE}how many points would you like to add to {GREEN}{current_attribute}?\n")
+                response = input(f"{WHITE}>:")
                 int_response = int(response)
                 if int_response > points:
                     os.system('clear')
                     point_board()
-                    print("not enough points")
+                    print(f"{WHITE}not enough points")
                     done2 = False
                 elif current_attribute == "strength":
                     if strength + int_response < 8:
@@ -208,7 +207,7 @@ def create_attributes():
     return strength, dexterity, endurance, intelligence
 
 def create_name():
-    print("what is your name? \n")
-    response = input(':')
+    print(f"{WHITE}what is your name? \n")
+    response = input(f"{WHITE}>:")
     os.system('clear')
     return response

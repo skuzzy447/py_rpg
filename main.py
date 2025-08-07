@@ -2,7 +2,7 @@ from char_create import new_character
 from main_menu import main_menu
 import os
 import sys
-
+from library import *
 levels_path = os.path.abspath("./levels")
 sys.path.append(levels_path)
 from level_1 import *
