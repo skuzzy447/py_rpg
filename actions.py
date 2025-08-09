@@ -18,15 +18,16 @@ def take(player, level, room, keys, item):
             rat_killed = keys[1]
             door_unlocked = keys[2]
             chest_inventory = keys[3]
+            room_inventory = keys[4]
             #If the container is opened and the second typed word is the same as an object it contains than it adds the object to the players inventory
             if chest_opened:
                 has_sword = False
                 has_key = False
                 for each in chest_inventory:
-                        if str(each) == "shortsword":
-                            has_sword = True
-                        if str(each) == "L1R1_Key":
-                            has_key = True
+                    if str(each) == "shortsword":
+                        has_sword = True
+                    if str(each) == "L1R1_Key":
+                        has_key = True
                 if (item == "shortsword" or item == "sword") and has_sword:
                     found = True
                     shortsword = Shortsword("1 d6", "shortsword")
@@ -41,6 +42,17 @@ def take(player, level, room, keys, item):
                     chest_inventory.remove("L1R1_Key")
                     container, container_inventory = "chest_inventory", chest_inventory
                     library.message("took L1R1_key")
+            
+            has_torch = (lambda: any(item == "torch" for item in room_inventory))()
+
+            
+            if (item == "torch" or item == "fire" or item == "light") and has_torch:
+                    found = True
+                    torch = Torch()
+                    player.inventory.append(torch)
+                    room_inventory.remove("torch")
+                    container, container_inventory = "room_inventory", room_inventory
+                    library.message("took torch")
     if not found:
         if item == "chest" or item == "door" or item == "wall" or item == "ground" or item == "floor" or item == "crack" or item == "ceiling" or item == "roof":
             library.message(f"{WHITE}Cannot pick up: {RED}{item}")
@@ -115,6 +127,6 @@ def equip(player, item):
                 each.equiped = True
                 player.equipment[each.slot] = each
                 found = True
-                library.message(f"{WHITE}Equiped: {BLUE}Shortsword")
+                library.message(f"{WHITE}Equiped: {BLUE}{item}")
     if not found:
         library.message(f"{WHITE}Cannot equip: {RED}{item}")

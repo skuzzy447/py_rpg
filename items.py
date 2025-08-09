@@ -39,4 +39,7 @@ class Key(Item):
     def __init__(self, unlocks, name):
         super().__init__(name, 0.1, False)
         self.unlocks = unlocks
-    
+
+class Torch(Equipment):
+    def __init__(self):
+        super().__init__("torch", 1.0, 4)
